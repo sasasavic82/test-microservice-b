@@ -5,10 +5,10 @@
             "network": "BRIDGE",
             "portMappings": [
                 {
-                    "hostPort": "7819",
+                    "hostPort": 0,
                     "containerPort": 8088,
                     "protocol": "tcp",
-                    "servicePort": 0
+                    "servicePort": 3334
                 }
             ]
         },
