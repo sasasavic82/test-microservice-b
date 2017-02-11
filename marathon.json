@@ -7,8 +7,7 @@
                 {
                     "hostPort": "7819",
                     "containerPort": 8088,
-                    "protocol": "tcp",
-                    "servicePort": "10011"
+                    "protocol": "tcp"
                 }
             ]
         },
