@@ -1,0 +1,15 @@
+{
+  "name": "dockerized",
+  "version": "1.0.0",
+  "description": "Node.js on Docker @ Mesosphere",
+  "author": "Sash Savic <savic.s82@gmail.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "socket.io": "^1.4.8",
+    "body-parser": "^1.15.2"
+  }
+}
