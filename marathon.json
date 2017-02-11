@@ -28,9 +28,7 @@
     "id": "microservice-b",
     "instances": 1,
     "labels": {
-        "HAPROXY_0_VHOST": "Unconfere-PublicSl-C9KQL48FMFR4-125691879.ap-southeast-2.elb.amazonaws.com",
         "HAPROXY_GROUP": "external",
-        "lastChangedBy": "sasa.savic@team.telstra.com",
         "HAPROXY_DEPLOYMENT_GROUP": "microservices"
     },
     "mem": 128,
