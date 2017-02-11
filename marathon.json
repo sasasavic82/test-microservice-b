@@ -8,7 +8,7 @@
                     "hostPort": 0,
                     "containerPort": 8088,
                     "protocol": "tcp",
-                    "servicePort": 3334
+                    "servicePort": 2001
                 }
             ]
         },
@@ -29,7 +29,8 @@
     "instances": 1,
     "labels": {
         "HAPROXY_GROUP": "external",
-        "HAPROXY_DEPLOYMENT_GROUP": "microservices"
+        "HAPROXY_DEPLOYMENT_GROUP": "microservices",
+        "HAPROXY_0_VHOST": "unconfere-publicsl-c9kql48fmfr4-125691879.ap-southeast-2.elb.amazonaws.com"
     },
     "mem": 128,
     "upgradeStrategy": {
