@@ -25,20 +25,23 @@ server.listen(PORT);
 console.log('Listening on ' + PORT);
 
 app.get('/', function (req, res) {
+  res.setHeader('Access-Control-Allow-Origin','*');
   res.send('Welcome to Microservice Bounded-Context B! (Natasja)');
 });
 
 app.get('/customer', function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin','*');
   return res.json(customers);  
 });
 
 app.get('/customer/:customerId', function(req, res) {
+    res.setHeader('Access-Control-Allow-Origin','*');
     var customer = _.find(customers, function(o) { return o.id == req.params.customerId; });
     return res.json(customer);
 });
 
 app.post('/customer', function (req, res) {
-  
+  res.setHeader('Access-Control-Allow-Origin','*');
   var customer = {
       id: req.body.customerId,
       name: req.body.name,
@@ -52,6 +55,7 @@ app.post('/customer', function (req, res) {
 });
 
 app.delete('/customer/:customerId', function(req, res) {
+    res.setHeader('Access-Control-Allow-Origin','*');
     _.remove(customers, function(o) {
         return o.id == req.params.customerId;
     });
