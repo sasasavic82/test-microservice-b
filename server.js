@@ -3,11 +3,12 @@
 var app = require('express')(),
     server = require('http').Server(app),
     io = require('socket.io')(server),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    _ = require('lodash');
 
 const PORT = 8088;
 
-var connections = [], locations = [];
+var connections = [], customers = [];
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:  false}));
@@ -17,26 +18,50 @@ server.listen(PORT);
 console.log('Listening on ' + PORT);
 
 app.get('/', function (req, res) {
-  res.send('Hello from L26 242 Exhibition St! Woohoooooooooooooo!');
+  res.send('Welcome to Microservice Bounded-Context B! (Natasja)');
 });
 
-app.get('/location', function (req, res) {
-  res.json(locations);  
+app.get('/customer', function (req, res) {
+  return res.json(customers);  
 });
 
-app.post('/location', function (req, res) {
+app.get('/customer/:customerId', function(req, res) {
+    var customer = _.find(customers, function(o) { return o.id == req.params.customerId; });
+    return res.json(customer);
+});
+
+app.post('/customer', function (req, res) {
   
-  console.log(req.body);
-
-  var loc = {
-    lon: req.body.lon,
-    lat: req.body.lat
+  var customer = {
+      id: req.body.customerId,
+      name: req.body.name,
+      surname: req.body.surname,
+      town: req.body.town
   }
   
-  addLocation(loc);
+  addCustomer(customer);
 
-  res.json(loc);
+  return res.json(customer);
 });
+
+app.delete('/customer/:customerId', function(req, res) {
+    _.remove(customers, function(o) {
+        return o.id == req.params.customerId;
+    });
+
+    res.status(204).end();
+});
+
+app.put('/customer/:customerId', function(req, res) {
+    customers = _.map(customers, function(o) {
+        return o.id == req.params.customerId ? req.body : o;
+    });
+
+    res.status(204).end();
+});
+
+
+// Helpers
 
 io.on('connection', function (socket) {
   connectons.push(socket);
@@ -57,15 +82,12 @@ function removeConnection(socket) {
 
 }
 
-function addLocation(loc) {
-
-  if(loc.lon && loc.lat) {
-
-    locations.push(loc);
+function addCustomer(customer) {
+    
+    customers.push(customer);
 
     connections.forEach(function(socket) {
-      socket.emit('location.update', loc)
+      socket.emit('customer.created', loc)
     });
 
-  }
 }
