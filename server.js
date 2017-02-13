@@ -8,7 +8,14 @@ var app = require('express')(),
 
 const PORT = 8088;
 
-var connections = [], customers = [];
+var connections = [], customers = [
+    {
+        id: 1,
+        name: "Tasja",
+        surname: "Laurie",
+        town: "St Kilda"
+    }
+];
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:  false}));
