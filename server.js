@@ -11,9 +11,15 @@ const PORT = 8088;
 var connections = [], customers = [
     {
         id: 1,
-        name: "Tasja",
-        surname: "Laurie",
-        town: "St Kilda"
+        name: "Sash",
+        surname: "Savic",
+        town: "Point Cook"
+    },
+    {
+        id: 2,
+        name: "Dave",
+        surname: "Slotnick",
+        town: "Sandringham"
     }
 ];
 
@@ -26,7 +32,7 @@ console.log('Listening on ' + PORT);
 
 app.get('/', function (req, res) {
   res.setHeader('Access-Control-Allow-Origin','*');
-  res.send('Welcome to Microservice Bounded-Context B! (Natasja)');
+  res.send('Welcome to Microservice Bounded-Context B! (Customer)');
 });
 
 app.get('/customer', function (req, res) {
